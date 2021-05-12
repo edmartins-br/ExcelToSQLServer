@@ -25,8 +25,8 @@ df = pd.DataFrame(data, columns = ['Month', 'Year', 'Local_ID',
                                    'org_Product','Accounting_unit',	
                                    'Expense_type','org_Portuguese',	
                                    'org_English','org_Code',	
-                                   'org_Name_GERP','org_Code',	
-                                   'org_Name_RHEV','Location',	
+                                   'org_Name_','org_Code',	
+                                   'org_Name_','Location',	
                                    'Manager','Assistant','Realocated',	
                                    'Cont_Index','Index'])
 df = df.fillna("")
@@ -53,11 +53,11 @@ print('Inserindo dados no banco banco...')
 for row in df.itertuples():    
     cursor.execute('''
                 INSERT INTO HeadCountStaging.dbo.headCount ([Month] , [Year] , LocalID , [Global_ID], EmployeeName, Gender,
-                                                            Birthday, [Age], fse_ise_k_ise, Hiring, [Seniority], Staff_Operator, Grade, Subgrade,
+                                                            Birthday, [Age], fse, Hiring, [Seniority], Staff_Operator, Grade, Subgrade,
                                                             JobFamily, CareerLevel, BrazilJobCode, [cbo], BaseSalary, TrustPosition,
                                                             Regular_Compatible, pcd, Status, StatusType, EmailAddres, EmploymentType,
                                                             Subsidiary, OrgProduct, AccounttingUnit, ExpenseType, OrgPortuguese,
-                                                            OrgEnglish, [OrgCodeGerp], ORGNameGERP, ORGCodeRHEV, ORGNameRHEV,  Location, Manager, Assistant,
+                                                            OrgEnglish, [OrgCode], ORGName, ORGCode, ORGName,  Location, Manager, Assistant,
                                                             Realocated, ContIndex, [Index])
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ''',
@@ -69,7 +69,7 @@ for row in df.itertuples():
                 row.Gender,
                 row.Birthday, 
                 row.Age, 
-                row.fse_ise_k_ise, 
+                row.fse, 
                 row.Hiring, 
                 row.Seniority, 
                 row.Staff_Operator, 
@@ -93,10 +93,10 @@ for row in df.itertuples():
                 row.Expense_type, 
                 row.org_Portuguese,
                 row.org_English, 
-                row.org_Code_GERP, 
-                row.org_Name_GERP, 
-                row.org_Code_RHEV,
-                row.org_Name_RHEV,
+                row.org_Code_, 
+                row.org_Name_, 
+                row.org_Code_,
+                row.org_Name_,
                 row.Location, 
                 row.Manager, 
                 row.Assistant,
